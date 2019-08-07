@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Updating string</title>
+    </head>
+    <body>
+        <div id='text'></div>
+        <script>
+            var ws = new WebSocket("ws://127.0.0.1:{{WEBSOCKET_PORT}}");
+            ws.onmessage = function (event) {
+                var message = document.getElementById("text");
+                message.innerHTML = event.data;
+            };
+        </script>
+    </body>
+</html>
