@@ -13,6 +13,8 @@ from websocket_server.observing_socket import ObservingSocket
 
 
 PORT = int(os.environ.get('PORT', '8080'))
+STRING_LENGTH = int(os.environ.get('STRING_LENGTH', '16'))
+UPDATE_INTERVAL = int(os.environ.get('UPDATE_INTERVAL', '5'))
 
 __all__ = [
     'main'
@@ -68,7 +70,7 @@ def main():
 
     updating = threading.Thread(
         target=StringGenerator.update_string,
-        args=(app['string'], 15, 1)
+        args=(app['string'], STRING_LENGTH, UPDATE_INTERVAL)
     )
     updating.start()
     web.run_app(app, host='0.0.0.0', port=PORT)

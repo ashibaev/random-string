@@ -16,5 +16,9 @@ services:
         PORT: 5678
     ports:
       - 5678:5678
+    environment:
+      - WEBSOCKET_PORT=5678
+      - STRING_LENGTH=32
+      - UPDATE_INTERVAL=1
     command: ["websocket_server"]
     
