@@ -21,12 +21,12 @@ def test_generate_string(length: int, symbols: str):
     assert set(symbols).issuperset(set(random_string))
 
 
-@pytest.mark.parametrize('count', [10000])
+@pytest.mark.parametrize('iterations', [10000])
 @pytest.mark.parametrize('length', [5, 10, 15, 20, 100])
 @pytest.mark.parametrize('symbols', ['a', 'abc', string.ascii_letters])
-def test_stress_generation(length, symbols, count):
+def test_stress_generation(length, symbols, iterations):
     generator = StringGenerator(length, symbols)
-    for _ in range(count):
+    for _ in range(iterations):
         random_string = generator.generate_string()
         assert len(random_string) == length
         assert set(symbols).issuperset(set(random_string))
