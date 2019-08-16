@@ -1,14 +1,12 @@
-PROJECT_NAME=app
-
 prepare:
 	pip install -r requirements.txt
 	pip install -r requirements-dev.txt
 
 run:
-	python3 $(PROJECT_NAME)
+	python3 app
 
 lint:
-	flake8 --max-line-length 119 $(PROJECT_NAME)
+	flake8 --max-line-length 119 app
 
 test:
-	pytest -v tests
+	pytest -v --cov=app tests
