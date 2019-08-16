@@ -1,14 +1,13 @@
 FROM python:3.7.4-alpine
 
-RUN pip3.7 install aiohttp
+COPY requirements.txt /requirements.txt
+RUN pip3.7 install -r requirements.txt
 ENV PYTHONPATH "$PYTHONPATH:/app:"
 
-COPY prepare-template.py prepare-template.py
+EXPOSE 8080
+RUN mkdir -p /var/log/app
+
 COPY app /app
-RUN python3 prepare-template.py
+COPY config /config
 
-ARG PORT
-ENV PORT $PORT
-EXPOSE $PORT
-
-ENTRYPOINT [ "python3.7", "/app" ]
+ENTRYPOINT [ "python3.7", "/app/main.py" ]

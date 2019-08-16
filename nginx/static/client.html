@@ -6,7 +6,7 @@
     <body>
         <div id='text'></div>
         <script>
-            var ws = new WebSocket("ws://127.0.0.1:{{WEBSOCKET_PORT}}");
+            var ws = new WebSocket(`ws://${window.location.hostname}:8000/ws`);
             ws.onmessage = function (event) {
                 var message = document.getElementById("text");
                 message.innerHTML = event.data;

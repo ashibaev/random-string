@@ -1,0 +1,15 @@
+string_generator:
+  length: !!int 32
+  symbols:
+    - !string_module digits
+    - !string_module ascii_letters
+update_interval: !!float 1
+logging:
+  version: 1
+  handlers:
+    console:
+      class: logging.StreamHandler
+  root:
+    handlers:
+      - console
+    level: DEBUG
