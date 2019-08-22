@@ -14,8 +14,7 @@ from app.string_generator import StringGenerator
 async def prepare_socket(websocket: web.WebSocketResponse, request: web.Request):
     await websocket.prepare(request)
     request.app['websockets'].add(websocket)
-    loop = asyncio.get_running_loop()
-    request['updating_task'] = loop.create_task(
+    request['updating_task'] = asyncio.create_task(
         update_socket_data(
             websocket,
             get_string_generator(request.app),
