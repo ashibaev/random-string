@@ -1,12 +1,19 @@
 prepare:
-	pip install -r requirements.txt
-	pip install -r requirements-dev.txt
-
-run:
-	python3 app
+	( \
+		python3.7 -m venv .venv; \
+		. .venv/bin/activate; \
+		pip install -r requirements.txt; \
+		pip install -r requirements-dev.txt; \
+	)
 
 lint:
-	flake8 --max-line-length 119 app
+	( \
+		. .venv/bin/activate; \
+		flake8 --max-line-length 119 app; \
+	)
 
 test:
-	pytest -v --cov=app tests
+	( \
+		. .venv/bin/activate; \
+		pytest -v --cov=app tests; \
+	)
