@@ -1,3 +1,5 @@
+all: prepare lint test
+
 prepare:
 	( \
 		python3.7 -m venv .venv; \
@@ -17,3 +19,6 @@ test:
 		. .venv/bin/activate; \
 		pytest -v --cov=app tests; \
 	)
+
+clear:
+	rm -rf .venv .coverage *.pyc .pytest_cache
