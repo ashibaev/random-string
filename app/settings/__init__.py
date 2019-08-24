@@ -1,4 +1,7 @@
 import pathlib
+import logging
+from typing import Any, Dict
+
 import yaml
 
 from app.settings.yaml_parsers import add_yaml_constructors
@@ -8,9 +11,13 @@ PROJECT_ROOT: pathlib.Path = pathlib.Path(__file__).parent.parent
 DEFAULT_CONFIG_PATH = PROJECT_ROOT.parent / 'config' / 'app.yml'
 
 
-def load_raw_config(data: str) -> dict:
+def load_raw_config(data: str) -> Dict[str, Any]:
     add_yaml_constructors()
-    config = yaml.load(data, Loader=yaml.Loader)
+    try:
+        config = yaml.load(data, Loader=yaml.Loader)
+    except yaml.YAMLError as e:
+        logging.error(f"Can not parse config: {e}")
+        raise
     return config
 
 
