@@ -21,4 +21,5 @@ test:
 	)
 
 clear:
-	rm -rf .venv .coverage *.pyc .pytest_cache
+	rm -rf .venv .coverage *.pyc .pytest_cache */__pycache_
+
